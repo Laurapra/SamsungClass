@@ -1,11 +1,25 @@
 #sesion quiz
 #quiz1
-"""
-Ingrese la cantidad: 800
-changes: [400, 400]
-len(changes): 2
 
-"""
+def coin_change(coins, amount):
+    if amount == 0:
+        return 0
+    if min(coins) > amount:
+        return float('inf')
+    min_coins = float('inf')
+    for coin in coins:
+        if amount >= coin:
+            num_coins = coin_change(coins, amount - coin)
+            if num_coins + 1 < min_coins:
+                min_coins = num_coins + 1
+    return min_coins
+
+coins = [400, 100, 50, 10]
+amount = 800
+
+num_coins = coin_change(coins, amount)
+print("El número mínimo de monedas necesarias para dar cambio de", amount, "wones es:", num_coins)
+
 
 #programacion en parejas
 #quiz1
